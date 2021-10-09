@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Sharp_Laba_1.BarCode;
 
 namespace Sharp_Laba_1
 {
@@ -9,16 +10,13 @@ namespace Sharp_Laba_1
     /// </summary>
     public class Storage
     {
-        private int _storageSize;
-
         private Product[] _container;
-
-        public int NumCode { get; set; } = 0;
+        
+        private int NumCode { get; set; }
 
         private Storage(int size)
         {
-            _storageSize = size;
-            _container = new Product[_storageSize];
+            _container = new Product[size];
             NumCode++;
         }
 
@@ -76,14 +74,14 @@ namespace Sharp_Laba_1
 
         public void Swap(int i, int j) => (this[i], this[j]) = (this[j], this[i]);
 
-        public int Search(int code) => Array.IndexOf(_container, _container.First(p => p?.NumericCode == code));
+        public int Search(int code) => Array.IndexOf(_container, _container.First(product => product?.NumericCode == code));
 
 
-        public List<int> Search(string name) => _container.Where(p =>p?.Name == name).Select(p => Array.IndexOf(_container, p)).ToList();
+        public List<int> Search(string name) => _container.Where(product =>product?.Name == name).Select(product => Array.IndexOf(_container, product)).ToList();
 
         public void SortByCode()
         {
-            _container = _container.OrderBy(p => p?.NumericCode).ToArray();
+            _container = _container.OrderBy(product => product?.NumericCode).ToArray();
             ReBar();
         }
 
@@ -93,14 +91,14 @@ namespace Sharp_Laba_1
             ReBar();
         }
 
-        private void ReBar(Product p) 
+        private void ReBar(Product product)
         {
-
+            //TODO Написать фунцию пересчёта штрих-кода
         }
 
         private void ReBar() 
         {
-            foreach (var item in _container.Where(p =>p != null))
+            foreach (var item in _container.Where(product =>product != null))
             {
                 ReBar(item);
             }
