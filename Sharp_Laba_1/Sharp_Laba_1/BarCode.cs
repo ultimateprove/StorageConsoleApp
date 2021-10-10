@@ -23,6 +23,9 @@ namespace Sharp_Laba_1
                     case "01":
                         barCode += "│";
                         break;
+                    case "1":
+                        barCode += "│";
+                        break;
                     case "10":
                         barCode += "║";
                         break;
