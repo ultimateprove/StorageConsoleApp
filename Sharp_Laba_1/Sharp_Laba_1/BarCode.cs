@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sharp_Laba_1
 {
     static class BarCode
     {
+        //TODO Пофиксить...
         public static string ToBarcode(int numericCode)
         {
             var bit = Convert.ToString(numericCode, 2);
             var barCode = "█";
-            for (int i = 0; i < bit.Length - 1; i += 2)
+            for (var i = 0; i < bit.Length - 1; i += 2)
             {
                 var tmp = bit.Substring(i, 2);
                 switch (tmp)

@@ -6,9 +6,9 @@ namespace Sharp_Laba_1
     {
         public static void Main(string[] args)
         {
-            Printer printer1 = new Printer("Zrinter1", 300, 100, 50, "A4");
-            Printer printer2 = new Printer("Drinter2", 200, 200, 60, "A3");
-            Printer printer3 = new Printer("Arinter2", 100, 200, 60, "A3");
+            Printer printer1 = new Printer("Zrinter1", 1000000, 100, 50, "A4");
+            Printer printer2 = new Printer("Drinter2", 20, 200, 60, "A3");
+            Printer printer3 = new Printer("Arinter2", 10, 300, 60, "A3");
 
             Product.FlagOfDisplay = false;
             //Console.WriteLine(printer1);
@@ -20,7 +20,7 @@ namespace Sharp_Laba_1
             //Console.WriteLine(printer2);
 
             Storage storage1 = 3;
-            storage1.NumCode = 45;
+            storage1.StorageNumCode = 45;
             
 
             storage1.Put(printer1);
@@ -36,6 +36,8 @@ namespace Sharp_Laba_1
             storage1.SortByName();
             
             Console.WriteLine(storage1);
+            
+            Console.WriteLine("█");
 
             Console.ReadKey();   
         }

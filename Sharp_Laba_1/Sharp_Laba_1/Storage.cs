@@ -12,12 +12,13 @@ namespace Sharp_Laba_1
     {
         private Product[] _container;
 
-        public int NumCode { get; set; }
+        public int StorageNumCode { get; set; }
+        
 
         private Storage(int size)
         {
             _container = new Product[size];
-            NumCode++;
+            StorageNumCode++;
         }
 
         public static implicit operator Storage(int n) => new Storage(n);
@@ -35,7 +36,7 @@ namespace Sharp_Laba_1
             {
                 str += $"\n\t{product}";
             }
-            return $"Номер склада: {NumCode} {str}";
+            return $"Номер склада: {StorageNumCode} {str}";
         }
 
         public void Put(Product product)
@@ -99,9 +100,7 @@ namespace Sharp_Laba_1
 
         private void ReBar(Product product)
         {
-            //TODO Починить...
-            product.Barcode = 
-                ToBarcode(NumCode) + "█" + ToBarcode(Array.IndexOf(_container,product)) + "█" + product.Barcode;
+            product.StorageCode = ToBarcode(StorageNumCode) + ToBarcode(Array.IndexOf(_container,product));
         }
 
         private void ReBar() 

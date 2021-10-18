@@ -1,5 +1,4 @@
-﻿using System;
-using static Sharp_Laba_1.BarCode;
+﻿using static Sharp_Laba_1.BarCode;
 
 namespace Sharp_Laba_1
 {
@@ -10,6 +9,8 @@ namespace Sharp_Laba_1
     {
         
         public int NumericCode { get; set; }
+
+        public string StorageCode { get; internal set; }
 
         public string Barcode 
         {
@@ -30,7 +31,7 @@ namespace Sharp_Laba_1
 
         public override string ToString()
         {
-            var code = FlagOfDisplay ? NumericCode.ToString() : Barcode;
+            var code = FlagOfDisplay ? NumericCode.ToString() : StorageCode + Barcode;
             return $"Name:{Name}, Code:{code}";
         }
 
