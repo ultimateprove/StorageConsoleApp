@@ -8,13 +8,16 @@ namespace Sharp_Laba_1
         public static string ToBarcode(int numericCode)
         {
             var bit = Convert.ToString(numericCode, 2);
-            var barCode = "█";
+            string barCode = null;
             for (var i = 0; i < bit.Length - 1; i += 2)
             {
                 var tmp = bit.Substring(i, 2);
                 switch (tmp)
                 {
                     case "00":
+                        barCode += " ";
+                        break;
+                    case "0":
                         barCode += " ";
                         break;
                     case "01":
@@ -31,14 +34,13 @@ namespace Sharp_Laba_1
                         break;
                 }
             }
-            barCode += "█";
             return barCode;
         }
 
         public static int ToNumericCode(string barcode)
         {
             string bitCode = null;
-            for (var i = 1; i < barcode.Length - 1; i++)
+            for (var i = 0; i < barcode.Length; i++)
             {
                 switch (barcode[i])
                 {

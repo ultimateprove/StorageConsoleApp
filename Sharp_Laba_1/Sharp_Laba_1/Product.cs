@@ -31,11 +31,10 @@ namespace Sharp_Laba_1
 
         public override string ToString()
         {
-            var code = FlagOfDisplay ? NumericCode.ToString() : StorageCode + Barcode;
+            var code = FlagOfDisplay ? NumericCode.ToString() : $"█{StorageCode}██{Barcode}█";
             return $"Name:{Name}, Code:{code}";
         }
-
- 
+        
     }
     
 }
