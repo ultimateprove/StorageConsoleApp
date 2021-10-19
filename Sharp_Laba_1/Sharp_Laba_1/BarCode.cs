@@ -2,13 +2,13 @@
 
 namespace Sharp_Laba_1
 {
-    static class BarCode
+    internal static class BarCode
     {
-        //TODO Пофиксить...
         public static string ToBarcode(int numericCode)
         {
             var bit = Convert.ToString(numericCode, 2);
-            string barCode = null;
+            var barCode = "█";
+            if (bit.Length % 2 != 0) bit = "0" + bit;
             for (var i = 0; i < bit.Length - 1; i += 2)
             {
                 var tmp = bit.Substring(i, 2);
@@ -34,13 +34,15 @@ namespace Sharp_Laba_1
                         break;
                 }
             }
+
+            barCode += "█";
             return barCode;
         }
 
         public static int ToNumericCode(string barcode)
         {
             string bitCode = null;
-            for (var i = 0; i < barcode.Length; i++)
+            for (var i = barcode.Length - 1; i >= 0; i--)
             {
                 switch (barcode[i])
                 {
@@ -56,9 +58,17 @@ namespace Sharp_Laba_1
                     case '▌':
                         bitCode += "11";
                         break;
+                    case '█':
+                        return Convert.ToInt32(bitCode, 2);
                 }
             }
             return Convert.ToInt32(bitCode, 2);
         }
+        
+        public static void GenerateFullBarcode(Product product, int storageNumcode, int indexOfProduct)
+        {
+            product.Barcode = ToBarcode(storageNumcode) + ToBarcode(indexOfProduct).Trim('█') + ToBarcode(product.NumericCode);
+        }
+
     }
 }

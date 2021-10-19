@@ -12,13 +12,16 @@ namespace Sharp_Laba_1
     {
         private Product[] _container;
 
-        public int StorageNumCode { get; set; }
+        private static int _count;
+
+        private int StorageNumCode { get; set; }
         
 
         private Storage(int size)
         {
             _container = new Product[size];
-            StorageNumCode++;
+            _count++;
+            StorageNumCode = _count;
         }
 
         public static implicit operator Storage(int n) => new Storage(n);
@@ -32,7 +35,7 @@ namespace Sharp_Laba_1
         public override string ToString()
         {
             string str = null;
-            foreach (var product in _container)
+            foreach (var product in _container.Where(product => product != null))
             {
                 str += $"\n\t{product}";
             }
@@ -46,7 +49,7 @@ namespace Sharp_Laba_1
                 if (_container[i] == null)
                 {
                     _container[i] = product;
-                    ReBar(product);
+                    GenerateFullBarcode(product, StorageNumCode, Array.IndexOf(_container,product));
                     return;
                 }
             }
@@ -62,7 +65,7 @@ namespace Sharp_Laba_1
             else
             {
                 _container[i] = product;
-                ReBar(product);
+                GenerateFullBarcode(product, StorageNumCode, Array.IndexOf(_container,product));
             }
         }
 
@@ -85,29 +88,24 @@ namespace Sharp_Laba_1
 
         public List<int> Search(string name) => 
             _container.Where(product =>product?.Name == name).Select(product => Array.IndexOf(_container, product)).ToList();
-
+        
         public void SortByCode()
         {
             _container = _container.OrderBy(product => product?.NumericCode).ToArray();
             ReBar();
         }
-
+        
         public void SortByName()
         {
             _container = _container.OrderBy(p => p?.Name).ToArray();
             ReBar();
         }
-
-        private void ReBar(Product product)
-        {
-            product.StorageCode = ToBarcode(StorageNumCode) + ToBarcode(Array.IndexOf(_container,product));
-        }
-
+        
         private void ReBar() 
         {
             foreach (var item in _container.Where(product =>product != null))
             {
-                ReBar(item);
+                GenerateFullBarcode(item, StorageNumCode, Array.IndexOf(_container,item));
             }
         }
     }

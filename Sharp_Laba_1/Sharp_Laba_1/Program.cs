@@ -19,10 +19,8 @@ namespace Sharp_Laba_1
             //Console.WriteLine(printer1);
             //Console.WriteLine(printer2);
 
-            Storage storage1 = 3;
-            storage1.StorageNumCode = 45;
+            Storage storage1 = 5;
             
-
             storage1.Put(printer1);
             storage1.Put(printer2);
             storage1.Put(printer3);
@@ -36,8 +34,11 @@ namespace Sharp_Laba_1
             storage1.SortByName();
             
             Console.WriteLine(storage1);
-            
-            Console.WriteLine("█");
+
+            Storage storage = 1;
+            storage.Put(printer1);
+            Console.WriteLine(storage);
+
 
             Console.ReadKey();   
         }

@@ -7,16 +7,9 @@ namespace Sharp_Laba_1
     /// </summary>
     public abstract class Product
     {
-        
-        public int NumericCode { get; set; }
+        public int NumericCode { get; }
 
-        public string StorageCode { get; internal set; }
-
-        public string Barcode 
-        {
-            get => ToBarcode(NumericCode);
-            set => NumericCode = ToNumericCode(value);
-        }
+        public string Barcode { get; set; }
 
         public string Name { get; set; }
 
@@ -27,11 +20,12 @@ namespace Sharp_Laba_1
         {
             Name = name;
             NumericCode = numericCode;
+            Barcode = ToBarcode(NumericCode);
         }
 
         public override string ToString()
         {
-            var code = FlagOfDisplay ? NumericCode.ToString() : $"█{StorageCode}██{Barcode}█";
+            var code = FlagOfDisplay ? NumericCode.ToString() : Barcode;
             return $"Name:{Name}, Code:{code}";
         }
         
