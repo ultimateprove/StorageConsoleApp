@@ -11,11 +11,20 @@ namespace Sharp_Laba_1
     public class Storage
     {
         private Product[] _container;
+        private int _storageNumCode;
 
         private static int _count;
 
-        private int StorageNumCode { get; set; }
-        
+        public int StorageNumCode
+        {
+            get => _storageNumCode;
+            set
+            {
+                _storageNumCode = value;
+                ReBar();
+            }
+        }
+
 
         private Storage(int size)
         {
@@ -48,8 +57,7 @@ namespace Sharp_Laba_1
             {
                 if (_container[i] == null)
                 {
-                    _container[i] = product;
-                    GenerateFullBarcode(product, StorageNumCode, Array.IndexOf(_container,product));
+                    Put(product, i);
                     return;
                 }
             }
@@ -79,7 +87,6 @@ namespace Sharp_Laba_1
         public void Swap(int i, int j)
         {
             (this[i], this[j]) = (this[j], this[i]);
-            ReBar();
         }
 
         public int Search(int code) => 

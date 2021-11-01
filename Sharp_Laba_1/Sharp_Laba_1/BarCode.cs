@@ -69,6 +69,5 @@ namespace Sharp_Laba_1
         {
             product.Barcode = ToBarcode(storageNumcode) + ToBarcode(indexOfProduct).Trim('█') + ToBarcode(product.NumericCode);
         }
-
     }
 }

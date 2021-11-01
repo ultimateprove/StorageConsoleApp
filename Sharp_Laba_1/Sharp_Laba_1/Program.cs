@@ -38,6 +38,8 @@ namespace Sharp_Laba_1
             Storage storage = 1;
             storage.Put(printer1);
             Console.WriteLine(storage);
+            
+            
 
 
             Console.ReadKey();   

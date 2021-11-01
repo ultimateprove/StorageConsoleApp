@@ -7,9 +7,28 @@ namespace Sharp_Laba_1
     /// </summary>
     public abstract class Product
     {
-        public int NumericCode { get; }
+        private int _numericCode;
+        private string _barcode;
 
-        public string Barcode { get; set; }
+        public int NumericCode
+        {
+            get => _numericCode;
+            set
+            {
+                _numericCode = value;
+                _barcode = ToBarcode(_numericCode);
+            }
+        }
+
+        public string Barcode
+        {
+            get => _barcode;
+            set
+            {
+                _barcode = value;
+                _numericCode = ToNumericCode(_barcode);
+            }
+        }
 
         public string Name { get; set; }
 
@@ -20,7 +39,6 @@ namespace Sharp_Laba_1
         {
             Name = name;
             NumericCode = numericCode;
-            Barcode = ToBarcode(NumericCode);
         }
 
         public override string ToString()
