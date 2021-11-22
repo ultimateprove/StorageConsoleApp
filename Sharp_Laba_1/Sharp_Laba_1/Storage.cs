@@ -8,9 +8,9 @@ namespace Sharp_Laba_1
     /// <summary>
     /// Класс контейнер склада
     /// </summary>
-    public class Storage
+    public class Storage<T> : IStorage<T> where T : class, IProduct
     {
-        private Product[] _container;
+        private T[] _container;
         private int _storageNumCode;
 
         private static int _count;
@@ -24,18 +24,17 @@ namespace Sharp_Laba_1
                 ReBar();
             }
         }
-
-
+        
         private Storage(int size)
         {
-            _container = new Product[size];
+            _container = new T[size];
             _count++;
             StorageNumCode = _count;
         }
 
-        public static implicit operator Storage(int n) => new Storage(n);
+        public static implicit operator Storage<T>(int n) => new Storage<T>(n);
 
-        public Product this[int index]
+        public T this[int index]
         {
             get => Pop(index);
             set => Put(value, index);
@@ -51,7 +50,7 @@ namespace Sharp_Laba_1
             return $"Номер склада: {StorageNumCode} {str}";
         }
 
-        public void Put(Product product)
+        public void Put(T product)
         {
             for (int i = 0; i < _container.Length; i++)
             {
@@ -64,7 +63,7 @@ namespace Sharp_Laba_1
             Console.WriteLine("Склад заполнен!");
         }
 
-        public void Put(Product product,int i)
+        public void Put(T product,int i)
         {
             if (_container[i] != null)
             {
@@ -77,7 +76,7 @@ namespace Sharp_Laba_1
             }
         }
 
-        public Product Pop(int i)
+        public T Pop(int i)
         {
             var tmp = _container[i];
             _container[i] = null;

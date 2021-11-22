@@ -65,7 +65,7 @@ namespace Sharp_Laba_1
             return Convert.ToInt32(bitCode, 2);
         }
         
-        public static void GenerateFullBarcode(Product product, int storageNumcode, int indexOfProduct)
+        public static void GenerateFullBarcode<T>(T product, int storageNumcode, int indexOfProduct) where T : class, IProduct
         {
             product.Barcode = ToBarcode(storageNumcode) + ToBarcode(indexOfProduct).Trim('█') + ToBarcode(product.NumericCode);
         }

@@ -1,9 +1,9 @@
 ﻿namespace Sharp_Laba_1
 {
-    public class Printer : Product
+    public class Printer : Product, IPrinter
     {
         public int Size { get; set; }
-
+        
         public int Speed { get; set; }
 
         public string Format { get; set; }

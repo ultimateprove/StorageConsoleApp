@@ -5,10 +5,10 @@ namespace Sharp_Laba_1
     /// <summary>
     /// Класс продукции
     /// </summary>
-    public abstract class Product
+    public abstract class Product : IProduct
     {
-        private int _numericCode;
-        private string _barcode;
+        private int _numericCode; // Числовой код
+        private string _barcode; // Штрихкод
 
         public int NumericCode
         {
@@ -30,23 +30,26 @@ namespace Sharp_Laba_1
             }
         }
 
+        /// <summary>
+        /// Название продукта
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Флагб выводить штрихкод или числовой
+        /// </summary>
         public static bool FlagOfDisplay { get; set; } = true;
-        
 
         protected Product(string name, int numericCode)
         {
             Name = name;
             NumericCode = numericCode;
         }
-
+        
         public override string ToString()
         {
             var code = FlagOfDisplay ? NumericCode.ToString() : Barcode;
             return $"Name:{Name}, Code:{code}";
         }
-        
     }
-    
 }
